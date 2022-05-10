@@ -6,7 +6,7 @@ import apoinBg from './../../assets/images/appointment.png';
 const Makeanappoinment = () => {
 
     return (
-        <section style={{ background: `url(${apoinBg})` }} className='flex justify-center items-center'>
+        <section style={{ background: `url(${apoinBg})` }} className='flex justify-center items-center '>
             <div className='flex-1 hidden lg:block'>
                 <img className='mt-[-100px]' src={apoinPic} alt="" />
             </div>

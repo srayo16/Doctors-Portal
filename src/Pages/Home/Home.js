@@ -9,7 +9,7 @@ import Testimonial from './Testimonial';
 
 const Home = () => {
     return (
-        <div className='container mx-auto px-12'>
+        <div className='container mx-auto overflow-hidden'>
             <FirsSection></FirsSection>
             <Info></Info>
             <CardSimilar></CardSimilar>
