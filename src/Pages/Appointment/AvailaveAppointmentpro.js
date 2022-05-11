@@ -1,8 +1,8 @@
 import React from 'react';
 
-const AvailaveAppointmentpro = ({ service }) => {
-    const { name, slots, _id } = service;
-    console.log(slots);
+const AvailaveAppointmentpro = ({ service, setTreatment }) => {
+    const { name, slots } = service;
+    // console.log(slots);
     return (
         <div className="card lg:max-w-lg bg-base-100 shadow-xl">
             <div className="card-body mx-auto text-center">
@@ -11,14 +11,16 @@ const AvailaveAppointmentpro = ({ service }) => {
                     slots.length ? <span>
                         {slots[0]}
                     </span> : <span className='text-red-500'>
-                        No slots available
+                        Try another date
                     </span>
                 }</p>
 
                 <p>{slots.length} {slots.length > 1 ? 'spaces' : 'space'} available</p>
 
                 <div className="card-actions justify-center mt-3">
-                    <button disabled={slots.length === 0} className="btn btn-secondary uppercase text-white">Book Appointment</button>
+
+                    <label disabled={slots.length === 0} onClick={() => setTreatment(service)} htmlFor="my-modal-6" className="btn btn-secondary uppercase text-white modal-button">Book Appointment</label>
+
                 </div>
             </div>
         </div>

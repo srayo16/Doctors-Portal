@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import UseServices from '../../Hook/UseServices';
 import Footer from '../Shared/Footer';
 import AppoinmentBanner from './AppoinmentBanner';
 import AvailableAppointment from './AvailableAppointment';
+import Modal from './Modal';
 
 const Appointment = () => {
     const [date, setDate] = useState(new Date());
