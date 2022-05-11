@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from '../Shared/Footer';
 import CardSimilar from './CardSimilar';
 import Exceptional from './Exceptional';
 import FirsSection from './FirsSection';
@@ -9,7 +10,7 @@ import Testimonial from './Testimonial';
 
 const Home = () => {
     return (
-        <div className='container mx-auto overflow-hidden'>
+        <div>
             <FirsSection></FirsSection>
             <Info></Info>
             <CardSimilar></CardSimilar>
@@ -17,6 +18,7 @@ const Home = () => {
             <Makeanappoinment></Makeanappoinment>
             <Testimonial></Testimonial>
             <Stayconnect></Stayconnect>
+            <Footer></Footer>
         </div>
     );
 };
