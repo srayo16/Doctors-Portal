@@ -1,9 +1,12 @@
 import { format } from 'date-fns';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../Firebase.init';
 
 const Modal = ({ treatment, date, setTreatment }) => {
     // console.log(treatment);
     const { name, slots, _id } = treatment;
+    const [user, loading, error] = useAuthState(auth);
 
     const submitForm = event => {
         event.preventDefault();
@@ -29,15 +32,15 @@ const Modal = ({ treatment, date, setTreatment }) => {
                     <form onSubmit={submitForm}>
                         <input type="text" name='time' disabled readOnly value={format(date, 'PP')} className="input input-bordered input-md w-full max-w-xs lg:max-w-lg my-5" />
 
-                        <select name='slot' className="select  bg-base-200  w-full max-w-xs lg:max-w-lg mb-5">
+                        <select name='slot' className="select border-inherit w-full max-w-xs lg:max-w-lg mb-5">
                             {
-                                slots.map(slot => <option key={slot._id} value={slot}>{slot}</option>)
+                                slots.map((slot, index) => <option key={index} value={slot}>{slot}</option>)
                             }
                         </select>
 
-                        <input type="text" name='name' placeholder="Full Name" className="input input-bordered input-md w-full max-w-xs lg:max-w-lg" />
+                        <input type="text" name='name' disabled readOnly value={user?.displayName} className="input input-bordered input-md w-full max-w-xs lg:max-w-lg" />
                         <input type="number" name='number' placeholder="Phone Number" className="input input-bordered input-md w-full max-w-xs lg:max-w-lg my-5" />
-                        <input type="email" name='email' placeholder="Email" className="input input-bordered input-md w-full max-w-xs lg:max-w-lg" />
+                        <input type="email" name='email' disabled readOnly value={user?.email} className="input input-bordered input-md w-full max-w-xs lg:max-w-lg" />
                         <input type="submit" className="input input-bordered input-md w-full max-w-xs lg:max-w-lg mt-5 bg-accent text-white" value='Submit' />
                     </form>
 

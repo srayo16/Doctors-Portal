@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../Firebase.init';
 import { useForm } from "react-hook-form";
@@ -19,6 +19,14 @@ const Login = () => {
         error1,
     ] = useSignInWithEmailAndPassword(auth);
     let from = location.state?.from?.pathname || "/";
+
+    useEffect(() => {
+        if (user || user1) {
+            navigate(from, { replace: true });
+            toast('Welcome to Doctor Portal');
+        }
+    }, [from, navigate, user, user1])
+
     if (loading || loading1) {
         return <Spinners></Spinners>
     }
@@ -28,10 +36,7 @@ const Login = () => {
         errorMessage = <p className='text-red-500'><small>{error?.message || error1?.message}</small></p>
     }
 
-    if (user || user1) {
-        navigate(from, { replace: true });
-        toast('Welcome to Doctor Portal');
-    }
+
 
     const onSubmit = data => {
 
