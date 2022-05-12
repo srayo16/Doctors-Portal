@@ -1,14 +1,24 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import auth from '../../Firebase.init';
+import { signOut } from 'firebase/auth';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = () => {
+    const [user, loading, error] = useAuthState(auth);
+    const logout = () => {
+        signOut(auth);
+        toast('Logged Out');
+    };
     const navItems = <>
         <li><Link to='/home'>Home</Link></li>
         <li><Link to='/about'>About</Link></li>
         <li><Link to='/appointment'>Appointment</Link></li>
         <li><Link to='/reviews'>Reviews</Link></li>
         <li><Link to='/contact'>Contact Us</Link></li>
-        <li><Link to='/login'>Login</Link></li>
+        <li>{user ? <button class="btn btn-ghost" onClick={logout}>Log Out</button> : <Link to='/login'>Login</Link>}</li>
     </>
 
     return (
@@ -28,6 +38,7 @@ const Navbar = () => {
                 <ul className="menu menu-horizontal p-0">
                     {navItems}
                 </ul>
+                <ToastContainer />
             </div>
         </div>
     );
