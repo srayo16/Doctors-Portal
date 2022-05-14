@@ -5,8 +5,8 @@ import { useForm } from "react-hook-form";
 import Spinners from '../Shared/Spinners';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { async } from '@firebase/util';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+
 
 const Signup = () => {
     let location = useLocation();
@@ -125,7 +125,7 @@ const Signup = () => {
                                 <Link className='text-primary ml-2' to='/login'>Go to Login</Link> </p>
                         </div>
                     </form>
-                    <ToastContainer />
+
                     <div className="divider">OR</div>
 
                     <button className="btn btn-outline" onClick={() => signInWithGoogle()}>CONTINUE WITH GOOGLE</button>

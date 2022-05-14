@@ -1,22 +1,51 @@
 import { format } from 'date-fns';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { toast } from 'react-toastify';
 import auth from '../../Firebase.init';
 
-const Modal = ({ treatment, date, setTreatment }) => {
+const Modal = ({ treatment, date, setTreatment, refetch }) => {
     // console.log(treatment);
     const { name, slots, _id } = treatment;
     const [user, loading, error] = useAuthState(auth);
 
     const submitForm = event => {
         event.preventDefault();
-        let time = event.target.time.value;
-        let slot = event.target.slot.value;
-        let names = event.target.name.value;
-        let number = event.target.number.value;
-        let email = event.target.email.value;
-        console.log(names, name, _id, time, slot, number, email);
-        setTreatment(null);
+        const takeData = {
+
+            treatmentId: _id,
+            treatment: name,
+            date: event.target.date.value,
+            slots: event.target.slot.value,
+            names: event.target.name.value,
+            number: event.target.number.value,
+            email: event.target.email.value
+        }
+
+        const url = 'http://localhost:5000/booking';
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(takeData)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+
+                    setTreatment(null);
+                    toast(`Appointment of ${takeData.treatment} at ${takeData.slots} are successful `);
+                }
+
+                else {
+
+                    toast.error('You have already booked!');
+                }
+                setTreatment(null);
+                refetch()
+            })
+
     }
 
     return (
@@ -30,7 +59,7 @@ const Modal = ({ treatment, date, setTreatment }) => {
                     {/* <p className="p-3  bg-base-200 mb-5 rounded-lg">{slots[0]}</p> */}
 
                     <form onSubmit={submitForm}>
-                        <input type="text" name='time' disabled readOnly value={format(date, 'PP')} className="input input-bordered input-md w-full max-w-xs lg:max-w-lg my-5" />
+                        <input type="text" name='date' disabled readOnly value={format(date, 'PP')} className="input input-bordered input-md w-full max-w-xs lg:max-w-lg my-5" />
 
                         <select name='slot' className="select border-inherit w-full max-w-xs lg:max-w-lg mb-5">
                             {

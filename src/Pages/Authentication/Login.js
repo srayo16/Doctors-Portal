@@ -4,8 +4,8 @@ import auth from '../../Firebase.init';
 import { useForm } from "react-hook-form";
 import Spinners from '../Shared/Spinners';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+
 
 const Login = () => {
     const navigate = useNavigate();
@@ -110,7 +110,7 @@ const Login = () => {
                                 <Link className='text-primary ml-2' to='/signup'>Create new account</Link> </p>
                         </div>
                     </form>
-                    <ToastContainer />
+
                     <div className="divider">OR</div>
 
                     <button className="btn btn-outline" onClick={() => signInWithGoogle()}>CONTINUE WITH GOOGLE</button>
