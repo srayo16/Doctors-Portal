@@ -21,6 +21,7 @@ const UserRow = ({ user, refetch }) => {
                     signOut(auth);
                     localStorage.removeItem('AccessToken');
                     navigate('/');
+                    toast.error('error!');
                 }
                 else {
 
@@ -29,8 +30,10 @@ const UserRow = ({ user, refetch }) => {
             })
             .then(data => {
                 // console.log(data);
-                toast.success('Made Admin');
-                refetch();
+                if (data.modifiedCount) {
+                    toast.success('Made Admin');
+                    refetch();
+                }
 
             })
     }
