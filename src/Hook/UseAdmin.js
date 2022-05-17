@@ -9,8 +9,8 @@ const UseAdmin = (user) => {
     const [adminLoading, setAdminLoading] = useState(true);
     const navigate = useNavigate();
     useEffect(() => {
-        const email = user?.email;
-        fetch(`http://localhost:5000/admin/${email}`, {
+        // const email = user?.email;
+        fetch(`http://localhost:5000/admin/${user.email}`, {
             method: "GET",
             headers: {
                 'content-type': 'application/json',
@@ -28,7 +28,7 @@ const UseAdmin = (user) => {
             })
     }, [navigate, user?.email])
 
-    return [admin];
+    return [admin, adminLoading];
 };
 
 export default UseAdmin;
