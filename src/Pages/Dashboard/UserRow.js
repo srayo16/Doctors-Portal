@@ -24,11 +24,11 @@ const UserRow = ({ user, refetch }) => {
                 }
                 else {
 
-                    res.json()
+                    return res.json()
                 }
             })
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 toast.success('Made Admin');
                 refetch();
 

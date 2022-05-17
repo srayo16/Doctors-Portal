@@ -1,38 +1,33 @@
 import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../Firebase.init';
 import Spinners from '../Shared/Spinners';
 import UserRow from './UserRow';
 
 const Users = () => {
-    const [users, setUsers] = useState([]);
+    // const [users, setUsers] = useState([]);
     const navigate = useNavigate();
-    useEffect(() => {
 
-        fetch("http://localhost:5000/user", {
-            method: "GET",
-            headers: {
-                authorization: `bearer ${localStorage.getItem('AccessToken')}`
-            }
-        })
-            .then(res => {
-                if (res.status === 401 || res.status === 403) {
-                    signOut(auth);
-                    localStorage.removeItem('AccessToken');
-                    navigate('/');
-                }
-                else {
+    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('http://localhost:5000/user', {
+        method: 'GET',
+        headers: {
+            authorization: `bearer ${localStorage.getItem('AccessToken')}`
+        }
+    }).then(res => {
+        if (res.status === 401 || res.status === 403) {
+            signOut(auth);
+            localStorage.removeItem('AccessToken');
+            navigate('/');
+        }
+        else {
+            return res.json()
+        }
+    }));
 
-                    res.json()
-                }
-            })
-            .then(data => setUsers(data))
 
-    }, [navigate]
-    )
-
-    if (users?.length <= 0) {
+    if (users?.length <= 0 || isLoading) {
         return <Spinners></Spinners>
     }
 
@@ -54,7 +49,7 @@ const Users = () => {
                     </thead>
                     <tbody>
                         {
-                            users?.map(user => <UserRow key={user._id} user={user}></UserRow>
+                            users?.map(user => <UserRow key={user._id} user={user} refetch={refetch}></UserRow>
                             )
                         }
 
