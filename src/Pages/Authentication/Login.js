@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import Spinners from '../Shared/Spinners';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import UseToken from '../../Hook/UseToken';
 
 
 const Login = () => {
@@ -18,14 +19,20 @@ const Login = () => {
         loading1,
         error1,
     ] = useSignInWithEmailAndPassword(auth);
+    const [token] = UseToken(user || user1);
+
     let from = location.state?.from?.pathname || "/";
 
+
+
     useEffect(() => {
-        if (user || user1) {
+        if (token) {
             navigate(from, { replace: true });
             toast('Welcome to Doctor Portal');
         }
-    }, [from, navigate, user, user1])
+
+
+    }, [from, navigate, token])
 
     if (loading || loading1) {
         return <Spinners></Spinners>

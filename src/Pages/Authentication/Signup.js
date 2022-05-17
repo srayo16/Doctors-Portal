@@ -6,6 +6,7 @@ import Spinners from '../Shared/Spinners';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { async } from '@firebase/util';
 import { toast } from 'react-toastify';
+import UseToken from '../../Hook/UseToken';
 
 
 const Signup = () => {
@@ -20,6 +21,8 @@ const Signup = () => {
         error1,
     ] = useCreateUserWithEmailAndPassword(auth);
     const [updateProfile, updating, error2] = useUpdateProfile(auth);
+    const [token] = UseToken(user || user1);
+
     let from = location.state?.from?.pathname || "/";
     if (loading || loading1 || updating) {
         return <Spinners></Spinners>
@@ -30,7 +33,7 @@ const Signup = () => {
         errorMessage = <p className='text-red-500'><small>{error?.message || error1?.message || error2?.message}</small></p>
     }
 
-    if (user || user1) {
+    if (token) {
         navigate(from, { replace: true });
         toast('Welcome to Doctor Portal')
     }
