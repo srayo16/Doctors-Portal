@@ -31,8 +31,6 @@ const Users = () => {
         return <Spinners></Spinners>
     }
 
-
-
     return (
         <div>
             <h1>This is Users List: {users?.length}</h1>
@@ -49,7 +47,7 @@ const Users = () => {
                     </thead>
                     <tbody>
                         {
-                            users?.map(user => <UserRow key={user._id} user={user} refetch={refetch}></UserRow>
+                            users?.map((user, index) => <UserRow key={user._id} user={user} index={index} refetch={refetch}></UserRow>
                             )
                         }
 

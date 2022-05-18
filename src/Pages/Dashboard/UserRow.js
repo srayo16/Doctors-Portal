@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../Firebase.init';
 
-const UserRow = ({ user, refetch }) => {
-    let count = 1;
+const UserRow = ({ user, refetch, index }) => {
+    ;
     const navigate = useNavigate();
     const makeAdmin = () => {
 
@@ -43,7 +43,7 @@ const UserRow = ({ user, refetch }) => {
 
     return (
         <tr>
-            <th>{count++}</th>
+            <th>{index + 1}</th>
             <td>{user?.email}</td>
             <td>{user?.role !== 'admin' && <button onClick={makeAdmin} className="btn btn-xs">Admin</button>}</td>
             <td><button className="btn btn-xs">Remove</button></td>
