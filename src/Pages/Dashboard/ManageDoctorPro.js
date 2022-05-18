@@ -1,31 +1,10 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 
-const ManageDoctorPro = ({ doctor, index, refetch }) => {
+const ManageDoctorPro = ({ doctor, index, refetch, setRemoveModal }) => {
     const { name, specialty, email, img } = doctor;
 
-    const handleDelete = email => {
-        const confirm = window.confirm('Are you sure to delete?');
-        if (confirm) {
-            fetch(`http://localhost:5000/doctor/${email}`, {
-                method: "DELETE",
-                headers: {
-                    authorization: `bearer ${localStorage.getItem('AccessToken')}`
-                }
-            })
-                .then(res => res.json())
-                .then(done => {
-                    // console.log(done);
-                    if (done.deletedCount > 0) {
 
-                        toast(`Doctor ${name} is deleted`);
-                        refetch();
-
-                    }
-                })
-        }
-
-    }
 
     return (
         <tr>
@@ -37,7 +16,9 @@ const ManageDoctorPro = ({ doctor, index, refetch }) => {
                 </div></th>
             <td>{name}</td>
             <td>{specialty}</td>
-            <td><button class="btn btn-error" onClick={() => handleDelete(email)}>Error</button></td>
+            <td> <label onClick={() => setRemoveModal(doctor)} for="deleting-modal" class="btn btn-error modal-button">Remove</label>
+
+            </td>
         </tr>
     );
 };

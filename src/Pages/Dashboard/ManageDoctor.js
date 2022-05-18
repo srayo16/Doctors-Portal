@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Spinners from '../Shared/Spinners';
+import DeleteingModal from './DeleteingModal';
 import ManageDoctorPro from './ManageDoctorPro';
 
 const ManageDoctor = () => {
+    const [removeModal, setRemoveModal] = useState(null);
+
     const { data: doctors, isLoading, refetch } = useQuery("doctors", () =>
         fetch('http://localhost:5000/doctor', {
             headers: {
@@ -33,12 +36,13 @@ const ManageDoctor = () => {
                     <tbody>
 
                         {
-                            doctors.map((doctor, index) => <ManageDoctorPro key={doctor._id} index={index} doctor={doctor} refetch={refetch}></ManageDoctorPro>)
+                            doctors.map((doctor, index) => <ManageDoctorPro key={doctor._id} index={index} doctor={doctor} refetch={refetch} setRemoveModal={setRemoveModal}></ManageDoctorPro>)
                         }
 
                     </tbody>
                 </table>
             </div>
+            {removeModal && <DeleteingModal refetch={refetch} setRemoveModal={setRemoveModal} removeModal={removeModal}></DeleteingModal>}
         </div>
     );
 };
