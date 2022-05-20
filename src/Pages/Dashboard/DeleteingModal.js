@@ -28,13 +28,13 @@ const DeleteingModal = ({ removeModal, refetch, setRemoveModal }) => {
     return (
         <div>
 
-            <input type="checkbox" id="deleting-modal" class="modal-toggle" />
-            <div class="modal">
-                <div class="modal-box relative">
-                    <label for="deleting-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <h3 class="text-lg font-bold">Are you sure to remove {name}?</h3>
-                    <p class="py-4">He is specialty on ${specialty}.</p>
-                    <button class="btn btn-error" onClick={() => handleDelete(email)}>Remove</button>
+            <input type="checkbox" id="deleting-modal" className="modal-toggle" />
+            <div className="modal">
+                <div className="modal-box relative">
+                    <label for="deleting-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                    <h3 className="text-lg font-bold">Are you sure to remove {name}?</h3>
+                    <p className="py-4">He is specialty on ${specialty}.</p>
+                    <button className="btn btn-error" onClick={() => handleDelete(email)}>Remove</button>
                 </div>
             </div>
         </div>

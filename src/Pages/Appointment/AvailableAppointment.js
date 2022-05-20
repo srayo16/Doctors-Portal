@@ -26,10 +26,8 @@ const AvailableAppointment = ({ date, setDate }) => {
     //         .then(res => res.json())
     //         .then(data => setServices(data))
     // }, [formattedDate])
-
-
-
     // console.log(services);
+
     return (
         <div className=' p-10 lg:p-0'>
             <h3 className='text-xl text-center text-secondary'>Available Appointments on {format(date, 'PP')}</h3>

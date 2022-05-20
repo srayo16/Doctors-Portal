@@ -6,7 +6,7 @@ import auth from '../../Firebase.init';
 
 const Modal = ({ treatment, date, setTreatment, refetch }) => {
     // console.log(treatment);
-    const { name, slots, _id } = treatment;
+    const { name, slots, _id, price } = treatment;
     const [user, loading, error] = useAuthState(auth);
 
     const submitForm = event => {
@@ -15,6 +15,7 @@ const Modal = ({ treatment, date, setTreatment, refetch }) => {
 
             treatmentId: _id,
             treatment: name,
+            price: price,
             date: event.target.date.value,
             slots: event.target.slot.value,
             names: event.target.name.value,

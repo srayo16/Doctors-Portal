@@ -1,7 +1,7 @@
 import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../Firebase.init';
 import Spinners from '../Shared/Spinners';
 
@@ -42,7 +42,7 @@ const ApointmentReview = () => {
         <div>
             <h1>This is appointment review: {userAppointment?.length}</h1>
             <div className="container mx-auto overflow-hidden">
-                <table className="table w-44  lg:w-full">
+                <table className="table w-55  lg:w-full">
                     {/* <!-- head --> */}
                     <thead>
                         <tr>
@@ -51,6 +51,7 @@ const ApointmentReview = () => {
                             <th>Date</th>
                             <th>Time</th>
                             <th>Treatment</th>
+                            <th>Process</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -61,6 +62,15 @@ const ApointmentReview = () => {
                                 <td>{appo.date}</td>
                                 <td>{appo.slots}</td>
                                 <td>{appo.treatment}</td>
+                                <td>
+
+                                    {(appo.price && !appo?.paid) && <Link to={`/dashboard/payment/${appo._id}`}><button className="btn btn-success">Pay</button></Link>}
+
+                                    {(appo.price && appo.paid) && <div>
+                                        <p><span className='text-green-500'>Paid</span></p>
+                                        <p>Transaction id: <span className='text-orange-500'>{appo.transactionId}</span></p>
+                                    </div>}
+                                </td>
                             </tr>)
                         }
 
