@@ -8,7 +8,7 @@ const AddaDoctor = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
 
     const { isLoading, error, data: treatment } = useQuery('serviceForAdd', () =>
-        fetch('http://localhost:5000/services').then(res =>
+        fetch('https://evening-dawn-51608.herokuapp.com/services').then(res =>
             res.json()
         )
     )
@@ -41,7 +41,7 @@ const AddaDoctor = () => {
                         img: img
                     }
 
-                    fetch('http://localhost:5000/doctor', {
+                    fetch('https://evening-dawn-51608.herokuapp.com/doctor', {
                         method: "POST",
                         headers: {
                             "content-type": "application/json",

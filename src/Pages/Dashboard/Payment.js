@@ -9,7 +9,7 @@ import CheckoutForm from './CheckoutForm';
 const stripePromise = loadStripe('pk_test_51L1J48LANp4ALWIINqOXqb6zamLOHcWa5yyBnGNbEUli5GECDYF4pgHzfh7oERUS43U3GEaOwvJYZ93fUvA2mQY300oWbVZJTw');
 const Payment = () => {
     const { id } = useParams();
-    const url = `http://localhost:5000/booking/${id}`;
+    const url = `https://evening-dawn-51608.herokuapp.com/booking/${id}`;
     const { isLoading, error, data: appointment } = useQuery(['booking', id], () =>
         fetch(url, {
             method: "GET",

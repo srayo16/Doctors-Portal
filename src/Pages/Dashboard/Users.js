@@ -10,7 +10,7 @@ const Users = () => {
     // const [users, setUsers] = useState([]);
     const navigate = useNavigate();
 
-    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('http://localhost:5000/user', {
+    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('https://evening-dawn-51608.herokuapp.com/user', {
         method: 'GET',
         headers: {
             authorization: `bearer ${localStorage.getItem('AccessToken')}`

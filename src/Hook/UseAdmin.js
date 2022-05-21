@@ -10,7 +10,7 @@ const UseAdmin = (user) => {
     const navigate = useNavigate();
     useEffect(() => {
         // const email = user?.email;
-        fetch(`http://localhost:5000/admin/${user.email}`, {
+        fetch(`https://evening-dawn-51608.herokuapp.com/admin/${user.email}`, {
             method: "GET",
             headers: {
                 'content-type': 'application/json',

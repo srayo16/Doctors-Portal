@@ -8,7 +8,7 @@ const ManageDoctor = () => {
     const [removeModal, setRemoveModal] = useState(null);
 
     const { data: doctors, isLoading, refetch } = useQuery("doctors", () =>
-        fetch('http://localhost:5000/doctor', {
+        fetch('https://evening-dawn-51608.herokuapp.com/doctor', {
             headers: {
                 authorization: `bearer ${localStorage.getItem('AccessToken')}`
             }
