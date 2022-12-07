@@ -23,7 +23,7 @@ const Modal = ({ treatment, date, setTreatment, refetch }) => {
             email: event.target.email.value
         }
 
-        const url = 'https://evening-dawn-51608.herokuapp.com/booking';
+        const url = 'https://doctor-portal-server-nekx.onrender.com/booking';
         fetch(url, {
             method: 'POST',
             headers: {

@@ -9,7 +9,7 @@ const UserRow = ({ user, refetch, index }) => {
     const navigate = useNavigate();
     const makeAdmin = () => {
 
-        fetch(`https://evening-dawn-51608.herokuapp.com/user/admin/${user.email}`, {
+        fetch(`https://doctor-portal-server-nekx.onrender.com/user/admin/${user.email}`, {
             method: "PUT",
             headers: {
                 authorization: `bearer ${localStorage.getItem('AccessToken')}`

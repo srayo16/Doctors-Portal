@@ -10,11 +10,10 @@ const AvailableAppointment = ({ date, setDate }) => {
     const [treatment, setTreatment] = useState();
     // const [services, setServices] = useState([]);
     const formattedDate = format(date, 'PP');
-
+    // console.log(formattedDate);
     const { isLoading, data: services, refetch } = useQuery(['available', formattedDate], () =>
-        fetch(`https://evening-dawn-51608.herokuapp.com/available?date=${formattedDate}`)
-            .then(res => res.json()
-            )
+        fetch(`https://doctor-portal-server-nekx.onrender.com/available?date=${formattedDate}`)
+            .then(res => res.json())
     )
 
     if (isLoading) {
@@ -22,7 +21,7 @@ const AvailableAppointment = ({ date, setDate }) => {
     }
 
     // useEffect(() => {
-    //     fetch(`https://evening-dawn-51608.herokuapp.com/available?date=${formattedDate}`)
+    //     fetch(`https://doctor-portal-server-nekx.onrender.com/available?date=${formattedDate}`)
     //         .then(res => res.json())
     //         .then(data => setServices(data))
     // }, [formattedDate])

@@ -8,7 +8,7 @@ const UseToken = (user) => {
         const currentUser = { email: email };
 
         if (email) {
-            fetch(`https://evening-dawn-51608.herokuapp.com/user/${email}`, {
+            fetch(`https://doctor-portal-server-nekx.onrender.com/user/${email}`, {
                 method: "PUT",
                 headers: {
                     'content-type': 'application/json'

@@ -8,7 +8,7 @@ const AddaDoctor = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
 
     const { isLoading, error, data: treatment } = useQuery('serviceForAdd', () =>
-        fetch('https://evening-dawn-51608.herokuapp.com/services').then(res =>
+        fetch('https://doctor-portal-server-nekx.onrender.com/services').then(res =>
             res.json()
         )
     )
@@ -41,7 +41,7 @@ const AddaDoctor = () => {
                         img: img
                     }
 
-                    fetch('https://evening-dawn-51608.herokuapp.com/doctor', {
+                    fetch('https://doctor-portal-server-nekx.onrender.com/doctor', {
                         method: "POST",
                         headers: {
                             "content-type": "application/json",

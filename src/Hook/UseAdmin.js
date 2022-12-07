@@ -10,7 +10,7 @@ const UseAdmin = (user) => {
     const navigate = useNavigate();
     useEffect(() => {
         // const email = user?.email;
-        fetch(`https://evening-dawn-51608.herokuapp.com/admin/${user.email}`, {
+        fetch(`https://doctor-portal-server-nekx.onrender.com/admin/${user.email}`, {
             method: "GET",
             headers: {
                 'content-type': 'application/json',

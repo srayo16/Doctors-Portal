@@ -16,7 +16,7 @@ const CheckoutForm = ({ appointment }) => {
     const { price, names, treatment, _id, email } = appointment;
 
     useEffect(() => {
-        fetch("https://evening-dawn-51608.herokuapp.com/create-payment-intent", {
+        fetch("https://doctor-portal-server-nekx.onrender.com/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -84,7 +84,7 @@ const CheckoutForm = ({ appointment }) => {
 
             }
 
-            fetch(`https://evening-dawn-51608.herokuapp.com/booking/${_id}`, {
+            fetch(`https://doctor-portal-server-nekx.onrender.com/booking/${_id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",

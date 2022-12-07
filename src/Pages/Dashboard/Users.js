@@ -10,7 +10,7 @@ const Users = () => {
     // const [users, setUsers] = useState([]);
     const navigate = useNavigate();
 
-    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('https://evening-dawn-51608.herokuapp.com/user', {
+    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('https://doctor-portal-server-nekx.onrender.com/user', {
         method: 'GET',
         headers: {
             authorization: `bearer ${localStorage.getItem('AccessToken')}`

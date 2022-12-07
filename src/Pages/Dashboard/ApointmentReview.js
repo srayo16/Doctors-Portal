@@ -12,7 +12,7 @@ const ApointmentReview = () => {
 
     useEffect(() => {
         if (user) {
-            fetch(`https://evening-dawn-51608.herokuapp.com/booking?email=${user.email}`, {
+            fetch(`https://doctor-portal-server-nekx.onrender.com/booking?email=${user.email}`, {
                 method: "GET",
                 headers: {
                     "authorization": `bearer ${localStorage.getItem('AccessToken')}`

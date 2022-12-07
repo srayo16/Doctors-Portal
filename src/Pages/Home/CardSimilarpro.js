@@ -6,7 +6,7 @@ const CardSimilarpro = ({ item }) => {
     // console.log(item);
 
     return (
-        <div className="card w-80 lg:w-96 bg-base-100 shadow-xl mx-auto">
+        <div className="card w-80 xl:w-96 bg-base-100 shadow-xl mx-auto">
             <figure className="px-10 pt-10">
                 <img src={img} alt="Shoes" className="rounded-xl" />
             </figure>
